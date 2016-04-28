@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzc.top.dao.EnMaterialMapper">
+    <resultMap id="BaseResultMap" type="com.hzc.top.model.EnMaterial">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="deleted" property="deleted" jdbcType="INTEGER"/>
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="com.hzc.top.model.EnMaterialWithBLOBs" extends="BaseResultMap">
+        <result column="name" property="name" jdbcType="LONGVARCHAR"/>
+        <result column="fanyi" property="fanyi" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, deleted
+  </sql>
+    <sql id="Blob_Column_List">
+    name, fanyi
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from en_material
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectBySectionId" resultType="com.hzc.top.model.EnMaterialWithBLOBs">
+        SELECT DISTINCT
+        em.id,em.name,em.deleted,em.fanyi
+        FROM
+        en_material em
+        left join
+        en_question eq ON em.id = eq.materialId
+        where
+        eq.categoryCode =#{id}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from en_material
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.hzc.top.model.EnMaterialWithBLOBs">
+    insert into en_material (id, deleted, name, 
+      fanyi)
+    values (#{id,jdbcType=INTEGER}, #{deleted,jdbcType=INTEGER}, #{name,jdbcType=LONGVARCHAR}, 
+      #{fanyi,jdbcType=LONGVARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.hzc.top.model.EnMaterialWithBLOBs">
+        insert into en_material
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="deleted != null">
+                deleted,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="fanyi != null">
+                fanyi,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="deleted != null">
+                #{deleted,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="fanyi != null">
+                #{fanyi,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hzc.top.model.EnMaterialWithBLOBs">
+        update en_material
+        <set>
+            <if test="deleted != null">
+                deleted = #{deleted,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="fanyi != null">
+                fanyi = #{fanyi,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hzc.top.model.EnMaterialWithBLOBs">
+    update en_material
+    set deleted = #{deleted,jdbcType=INTEGER},
+      name = #{name,jdbcType=LONGVARCHAR},
+      fanyi = #{fanyi,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.hzc.top.model.EnMaterial">
+    update en_material
+    set deleted = #{deleted,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

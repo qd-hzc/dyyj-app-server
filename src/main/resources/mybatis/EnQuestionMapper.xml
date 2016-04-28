@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzc.top.dao.EnQuestionMapper" >
+  <resultMap id="BaseResultMap" type="com.hzc.top.model.EnQuestion" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="categoryCode" property="categorycode" jdbcType="VARCHAR" />
+    <result column="materialId" property="materialid" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="knowledgePoint" property="knowledgepoint" jdbcType="VARCHAR" />
+    <result column="chapter" property="chapter" jdbcType="VARCHAR" />
+    <result column="parser_video_id" property="parserVideoId" jdbcType="VARCHAR" />
+    <result column="deleted" property="deleted" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hzc.top.model.EnQuestion" extends="BaseResultMap" >
+    <result column="name" property="name" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, categoryCode, materialId, type, knowledgePoint, chapter, parser_video_id, deleted
+  </sql>
+  <sql id="Blob_Column_List" >
+    name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from en_question
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectByCode" resultType="com.hzc.top.model.EnQuestion">
+        SELECT
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        FROM en_question
+        where categoryCode = #{code}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from en_question
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzc.top.model.EnQuestion" >
+    insert into en_question (id, categoryCode, materialId, 
+      type, knowledgePoint, chapter, 
+      parser_video_id, deleted, name
+      )
+    values (#{id,jdbcType=INTEGER}, #{categorycode,jdbcType=VARCHAR}, #{materialid,jdbcType=INTEGER}, 
+      #{type,jdbcType=VARCHAR}, #{knowledgepoint,jdbcType=VARCHAR}, #{chapter,jdbcType=VARCHAR}, 
+      #{parserVideoId,jdbcType=VARCHAR}, #{deleted,jdbcType=INTEGER}, #{name,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzc.top.model.EnQuestion" >
+    insert into en_question
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="categorycode != null" >
+        categoryCode,
+      </if>
+      <if test="materialid != null" >
+        materialId,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="knowledgepoint != null" >
+        knowledgePoint,
+      </if>
+      <if test="chapter != null" >
+        chapter,
+      </if>
+      <if test="parserVideoId != null" >
+        parser_video_id,
+      </if>
+      <if test="deleted != null" >
+        deleted,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="categorycode != null" >
+        #{categorycode,jdbcType=VARCHAR},
+      </if>
+      <if test="materialid != null" >
+        #{materialid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="knowledgepoint != null" >
+        #{knowledgepoint,jdbcType=VARCHAR},
+      </if>
+      <if test="chapter != null" >
+        #{chapter,jdbcType=VARCHAR},
+      </if>
+      <if test="parserVideoId != null" >
+        #{parserVideoId,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzc.top.model.EnQuestion" >
+    update en_question
+    <set >
+      <if test="categorycode != null" >
+        categoryCode = #{categorycode,jdbcType=VARCHAR},
+      </if>
+      <if test="materialid != null" >
+        materialId = #{materialid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="knowledgepoint != null" >
+        knowledgePoint = #{knowledgepoint,jdbcType=VARCHAR},
+      </if>
+      <if test="chapter != null" >
+        chapter = #{chapter,jdbcType=VARCHAR},
+      </if>
+      <if test="parserVideoId != null" >
+        parser_video_id = #{parserVideoId,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null" >
+        deleted = #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hzc.top.model.EnQuestion" >
+    update en_question
+    set categoryCode = #{categorycode,jdbcType=VARCHAR},
+      materialId = #{materialid,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      knowledgePoint = #{knowledgepoint,jdbcType=VARCHAR},
+      chapter = #{chapter,jdbcType=VARCHAR},
+      parser_video_id = #{parserVideoId,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=INTEGER},
+      name = #{name,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzc.top.model.EnQuestion" >
+    update en_question
+    set categoryCode = #{categorycode,jdbcType=VARCHAR},
+      materialId = #{materialid,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      knowledgePoint = #{knowledgepoint,jdbcType=VARCHAR},
+      chapter = #{chapter,jdbcType=VARCHAR},
+      parser_video_id = #{parserVideoId,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

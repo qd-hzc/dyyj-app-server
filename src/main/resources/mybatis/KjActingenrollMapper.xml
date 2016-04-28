@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzc.top.dao.KjActingenrollMapper" >
+  <resultMap id="BaseResultMap" type="com.hzc.top.model.KjActingenroll" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="nation" property="nation" jdbcType="INTEGER" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
+    <result column="emaill" property="emaill" jdbcType="VARCHAR" />
+    <result column="diploma" property="diploma" jdbcType="VARCHAR" />
+    <result column="major" property="major" jdbcType="VARCHAR" />
+    <result column="graduate_date" property="graduateDate" jdbcType="TIMESTAMP" />
+    <result column="certificate_num" property="certificateNum" jdbcType="VARCHAR" />
+    <result column="school" property="school" jdbcType="VARCHAR" />
+    <result column="exam_subject" property="examSubject" jdbcType="VARCHAR" />
+    <result column="place" property="place" jdbcType="INTEGER" />
+    <result column="company" property="company" jdbcType="VARCHAR" />
+    <result column="company_phone" property="companyPhone" jdbcType="VARCHAR" />
+    <result column="company_address" property="companyAddress" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="payment_ok" property="paymentOk" jdbcType="INTEGER" />
+    <result column="payment_money" property="paymentMoney" jdbcType="INTEGER" />
+    <result column="payment_time" property="paymentTime" jdbcType="TIMESTAMP" />
+    <result column="payment_log" property="paymentLog" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="has_company" property="hasCompany" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="deleted" property="deleted" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.hzc.top.model.KjActingenroll" >
+    insert into kj_actingenroll (id, name, code, 
+      nation, sex, phone, 
+      photo, emaill, diploma, 
+      major, graduate_date, certificate_num, 
+      school, exam_subject, place, 
+      company, company_phone, company_address, 
+      remarks, payment_ok, payment_money, 
+      payment_time, payment_log, status, 
+      create_time, password, has_company, 
+      address, deleted)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{nation,jdbcType=INTEGER}, #{sex,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, 
+      #{photo,jdbcType=VARCHAR}, #{emaill,jdbcType=VARCHAR}, #{diploma,jdbcType=VARCHAR}, 
+      #{major,jdbcType=VARCHAR}, #{graduateDate,jdbcType=TIMESTAMP}, #{certificateNum,jdbcType=VARCHAR}, 
+      #{school,jdbcType=VARCHAR}, #{examSubject,jdbcType=VARCHAR}, #{place,jdbcType=INTEGER}, 
+      #{company,jdbcType=VARCHAR}, #{companyPhone,jdbcType=VARCHAR}, #{companyAddress,jdbcType=VARCHAR}, 
+      #{remarks,jdbcType=VARCHAR}, #{paymentOk,jdbcType=INTEGER}, #{paymentMoney,jdbcType=INTEGER}, 
+      #{paymentTime,jdbcType=TIMESTAMP}, #{paymentLog,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{password,jdbcType=VARCHAR}, #{hasCompany,jdbcType=INTEGER}, 
+      #{address,jdbcType=VARCHAR}, #{deleted,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzc.top.model.KjActingenroll" >
+    insert into kj_actingenroll
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="nation != null" >
+        nation,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="photo != null" >
+        photo,
+      </if>
+      <if test="emaill != null" >
+        emaill,
+      </if>
+      <if test="diploma != null" >
+        diploma,
+      </if>
+      <if test="major != null" >
+        major,
+      </if>
+      <if test="graduateDate != null" >
+        graduate_date,
+      </if>
+      <if test="certificateNum != null" >
+        certificate_num,
+      </if>
+      <if test="school != null" >
+        school,
+      </if>
+      <if test="examSubject != null" >
+        exam_subject,
+      </if>
+      <if test="place != null" >
+        place,
+      </if>
+      <if test="company != null" >
+        company,
+      </if>
+      <if test="companyPhone != null" >
+        company_phone,
+      </if>
+      <if test="companyAddress != null" >
+        company_address,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="paymentOk != null" >
+        payment_ok,
+      </if>
+      <if test="paymentMoney != null" >
+        payment_money,
+      </if>
+      <if test="paymentTime != null" >
+        payment_time,
+      </if>
+      <if test="paymentLog != null" >
+        payment_log,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="hasCompany != null" >
+        has_company,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="deleted != null" >
+        deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="emaill != null" >
+        #{emaill,jdbcType=VARCHAR},
+      </if>
+      <if test="diploma != null" >
+        #{diploma,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null" >
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateDate != null" >
+        #{graduateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="certificateNum != null" >
+        #{certificateNum,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null" >
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="examSubject != null" >
+        #{examSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="place != null" >
+        #{place,jdbcType=INTEGER},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPhone != null" >
+        #{companyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null" >
+        #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentOk != null" >
+        #{paymentOk,jdbcType=INTEGER},
+      </if>
+      <if test="paymentMoney != null" >
+        #{paymentMoney,jdbcType=INTEGER},
+      </if>
+      <if test="paymentTime != null" >
+        #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentLog != null" >
+        #{paymentLog,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="hasCompany != null" >
+        #{hasCompany,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

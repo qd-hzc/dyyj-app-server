@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzc.top.dao.HsIntegralMapper">
+    <resultMap id="BaseResultMap" type="com.hzc.top.model.HsIntegral">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="setting_id" property="settingId" jdbcType="INTEGER"/>
+        <result column="source_type" property="sourceType" jdbcType="INTEGER"/>
+        <result column="source_id" property="sourceId" jdbcType="INTEGER"/>
+        <result column="target_type" property="targetType" jdbcType="INTEGER"/>
+        <result column="target_id" property="targetId" jdbcType="INTEGER"/>
+        <result column="integral_val" property="integralVal" jdbcType="INTEGER"/>
+        <result column="type" property="type" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="deleted" property="deleted" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, user_id, setting_id, source_type, source_id, target_type, target_id, integral_val, 
+    type, create_time, update_time, deleted
+  </sql>
+    <sql id="Base_Column_And_Consume_List">
+        <include refid="Base_Column_List"></include>
+        ,
+        consume_id,
+        name, consume_type, study_hours,
+        study_unit, price, class_descr,
+        major_descr, subject, exam_fee,
+        tuition_fee, book_fee, pay_method,
+        pay_money, start_date, end_date,
+        consume_create_time, consume_update_time, consume_deleted
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from hs_integral
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hs_integral
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.hzc.top.model.HsIntegral">
+    insert into hs_integral (id, user_id, setting_id, 
+      source_type, source_id, target_type, 
+      target_id, integral_val, type, 
+      create_time, update_time, deleted
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{settingId,jdbcType=INTEGER}, 
+      #{sourceType,jdbcType=INTEGER}, #{sourceId,jdbcType=INTEGER}, #{targetType,jdbcType=INTEGER}, 
+      #{targetId,jdbcType=INTEGER}, #{integralVal,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=INTEGER}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.hzc.top.model.HsIntegral">
+        insert into hs_integral
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="settingId != null">
+                setting_id,
+            </if>
+            <if test="sourceType != null">
+                source_type,
+            </if>
+            <if test="sourceId != null">
+                source_id,
+            </if>
+            <if test="targetType != null">
+                target_type,
+            </if>
+            <if test="targetId != null">
+                target_id,
+            </if>
+            <if test="integralVal != null">
+                integral_val,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="deleted != null">
+                deleted,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="settingId != null">
+                #{settingId,jdbcType=INTEGER},
+            </if>
+            <if test="sourceType != null">
+                #{sourceType,jdbcType=INTEGER},
+            </if>
+            <if test="sourceId != null">
+                #{sourceId,jdbcType=INTEGER},
+            </if>
+            <if test="targetType != null">
+                #{targetType,jdbcType=INTEGER},
+            </if>
+            <if test="targetId != null">
+                #{targetId,jdbcType=INTEGER},
+            </if>
+            <if test="integralVal != null">
+                #{integralVal,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleted != null">
+                #{deleted,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hzc.top.model.HsIntegral">
+        update hs_integral
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="settingId != null">
+                setting_id = #{settingId,jdbcType=INTEGER},
+            </if>
+            <if test="sourceType != null">
+                source_type = #{sourceType,jdbcType=INTEGER},
+            </if>
+            <if test="sourceId != null">
+                source_id = #{sourceId,jdbcType=INTEGER},
+            </if>
+            <if test="targetType != null">
+                target_type = #{targetType,jdbcType=INTEGER},
+            </if>
+            <if test="targetId != null">
+                target_id = #{targetId,jdbcType=INTEGER},
+            </if>
+            <if test="integralVal != null">
+                integral_val = #{integralVal,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deleted != null">
+                deleted = #{deleted,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hzc.top.model.HsIntegral">
+    update hs_integral
+    set user_id = #{userId,jdbcType=INTEGER},
+      setting_id = #{settingId,jdbcType=INTEGER},
+      source_type = #{sourceType,jdbcType=INTEGER},
+      source_id = #{sourceId,jdbcType=INTEGER},
+      target_type = #{targetType,jdbcType=INTEGER},
+      target_id = #{targetId,jdbcType=INTEGER},
+      integral_val = #{integralVal,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectByUserId" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM hs_integral
+        WHERE
+        user_id = #{userId} and deleted = 1 order by id desc
+    </select>
+    <select id="selectListByUidAndType" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM hs_integral
+        WHERE type = #{type,jdbcType=INTEGER} AND user_id = #{userId,jdbcType=INTEGER}
+    </select>
+    <select id="selectSourceList" resultType="map">
+        SELECT
+        hi.id, hi.user_id, hi.setting_id, hi.source_type, hi.source_id, hi.target_type, hi.target_id, hi.integral_val,
+        hi.type, hi.create_time, hi.update_time, hi.deleted,
+        hc.id as consume_id,
+        hc.name, hc.type as consume_type, hc.study_hours,
+        hc.study_unit, hc.price, hc.class_descr,
+        hc.major_descr, hc.subject, hc.exam_fee,
+        hc.tuition_fee, hc.book_fee, hc.pay_method,
+        hc.pay_money, hc.start_date, hc.end_date,
+        hc.create_time as consume_create_time, hc.update_time as consume_update_time, hc.deleted as consume_deleted
+        FROM
+        hs_integral hi
+        LEFT JOIN hs_consume hc ON hi.source_id = hc.id
+        WHERE
+        hi.type = 1
+        AND hi.user_id = #{userId,jdbcType=INTEGER}
+    </select>
+    <select id="selectTargetList" resultType="map">
+        SELECT
+        hi.id, hi.user_id, hi.setting_id, hi.source_type, hi.source_id, hi.target_type, hi.target_id, hi.integral_val,
+        hi.type, hi.create_time, hi.update_time, hi.deleted,
+        hc.id as consume_id,
+        hc.name, hc.type as consume_type, hc.study_hours,
+        hc.study_unit, hc.price, hc.class_descr,
+        hc.major_descr, hc.subject, hc.exam_fee,
+        hc.tuition_fee, hc.book_fee, hc.pay_method,
+        hc.pay_money, hc.start_date, hc.end_date,
+        hc.create_time as consume_create_time, hc.update_time as consume_update_time, hc.deleted as consume_deleted
+        FROM
+        hs_integral hi
+        LEFT JOIN hs_consume hc ON hi.source_id = hc.id
+        WHERE
+        hi.type = 2
+        AND hi.user_id = #{userId,jdbcType=INTEGER}
+    </select>
+</mapper>

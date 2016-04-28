@@ -1,0 +1,8 @@
+1、原有lms系统目录结构说明：
+common:公共类
+web：存放servlet
+object：存放dao和bean
+service：存放service
+
+
+ 

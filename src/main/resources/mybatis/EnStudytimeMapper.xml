@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzc.top.dao.EnStudytimeMapper" >
+  <resultMap id="BaseResultMap" type="com.hzc.top.model.EnStudytime" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="section_id" property="sectionId" jdbcType="INTEGER" />
+    <result column="study_time" property="studyTime" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, section_id, study_time, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from en_studytime
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from en_studytime
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzc.top.model.EnStudytime" >
+    insert into en_studytime (id, user_id, section_id, 
+      study_time, create_time)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{sectionId,jdbcType=INTEGER}, 
+      #{studyTime,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzc.top.model.EnStudytime" >
+    insert into en_studytime
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="sectionId != null" >
+        section_id,
+      </if>
+      <if test="studyTime != null" >
+        study_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="sectionId != null" >
+        #{sectionId,jdbcType=INTEGER},
+      </if>
+      <if test="studyTime != null" >
+        #{studyTime,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzc.top.model.EnStudytime" >
+    update en_studytime
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="sectionId != null" >
+        section_id = #{sectionId,jdbcType=INTEGER},
+      </if>
+      <if test="studyTime != null" >
+        study_time = #{studyTime,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzc.top.model.EnStudytime" >
+    update en_studytime
+    set user_id = #{userId,jdbcType=INTEGER},
+      section_id = #{sectionId,jdbcType=INTEGER},
+      study_time = #{studyTime,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

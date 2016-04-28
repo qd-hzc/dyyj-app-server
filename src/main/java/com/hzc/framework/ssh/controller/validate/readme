@@ -1,0 +1,14 @@
+描述：
+异常注解是为了方便编写mvc三层中的controller这一层而设计的。
+为了更加方便的验证和表单验证的复用，减少硬编码。
+表单验证的触发仅仅由W.packBean来进行触发，表单验证成功后才进行表单数据到javaBean对象的转换，否则直接抛出验证异常信息。
+
+验证注解用法：
+1、参考：
+com.tangiatech.lms.vo.StructureRegisterInfo;
+com.tangialts.struts.form.PaperForm;
+2、NotNull：非空验证
+Regexp：正则表达式验证，RegexpType枚举中封装了一些常用的正则表达式。
+3、异常：
+如果表单封装验证失败的话，则会抛出ValidationException异常信息。
+异常信息的内容就是您在验证注解NotNull和Regexp中填入的message参数的值。
